@@ -2,3 +2,6 @@
 /aop/target/
 /ioc/target/
 /tx/target/
+.idea/
+.idea/.gitignore
+.idea/misc.xml

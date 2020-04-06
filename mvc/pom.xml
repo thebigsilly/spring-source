@@ -2,25 +2,32 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <groupId>org.example</groupId>
-    <artifactId>tx</artifactId>
-    <version>1.0-SNAPSHOT</version>
     <parent>
-        <groupId>org.example</groupId>
         <artifactId>spring-source</artifactId>
+        <groupId>org.example</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <name>tx</name>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>mvc</artifactId>
+    <packaging>war</packaging>
+
+    <name>mvc Maven Webapp</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.2.4.RELEASE</version>
+        </dependency>
+    </dependencies>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-
 
 </project>

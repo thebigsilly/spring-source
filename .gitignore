@@ -5,3 +5,9 @@
 .idea/
 .idea/.gitignore
 .idea/misc.xml
+aop/aop.iml
+ioc/ioc.iml
+mvc/mvc.iml
+mvc/target/
+spring-source.iml
+tx/tx.iml

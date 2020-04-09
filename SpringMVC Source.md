@@ -77,3 +77,53 @@
 
 - 
 
+## Interceptor
+
+### 使用
+
+#### XML
+
+```xml
+<mvc:interceptors>
+    <mvc:interceptor>
+        <mvc:mapping path="/*"/>
+        <bean class="com.fyh.mvc.source.interceptor.XMLInterceptor"/>
+    </mvc:interceptor>
+    <bean class="com.fyh.mvc.source.interceptor.BeanInterceptor"/>
+    <ref bean="interceptor"/>
+</mvc:interceptors>
+```
+
+####Java
+
+```java
+@EnableWebMvc
+@ComponentScan(value = "com.fyh.mvc.source.controller", includeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Controller.class)})
+public class WebConfig implements WebMvcConfigurer {
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new InterceptorAnnotation());
+    }
+}
+```
+
+### 原理
+
+#### 注入
+
+##### XML
+
+1. InterceptorsBeanDefinitionParser解析Interceptors标签。内部Interceptor，Bean，Ref都会组装为MappedInterceptor
+2. HandlerMapping执行ApplicationContextAware阶段调用AbstractHandlerMapping的initApplicationContext获取Bean工厂所有MappedInterceptor进行注入
+
+#####Java
+
+1. DelegatingWebMvcConfiguration#setConfigurers自动注入WebMvcConfigurer
+2. WebMmvConfigurationSupport实例化RequestMappingHandlerMapping调用WebMvcConfigurer#addInterceptors
+
+####执行过程
+
+1. AbstractHandlerMapping@getHandler将Handler包装为HandlerExecutionChain，在添加过程中进行过滤
+2. 执行HandlerAdapter@handle之前执行HandlerInterceptor#preHandler
+3. ViewName解析后执行HandlerInterceptor#postHandler
+4. 页面渲染成功后执行HandlerInterceptor#triggerAfterCompletion

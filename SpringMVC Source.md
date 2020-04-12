@@ -19,6 +19,12 @@
 4. 渲染View
 5. 执行PostHandler
 
+### 数据处理
+
+1. 执行@ModelAttribute但没有@RequestParam
+2. 执行@InitBinder
+3. 
+
 ## 组件
 
 - UrlPathHelper
@@ -75,6 +81,23 @@
 
 - ModelMap
 
+- HandlerMethodArgumentResolver
+
+  请求参数解析器
+
+  - RequestParamMethodArgumentResolver
+  - RequestParamMapMethodArgumentResolver
+  - PathVariableMethodArgumentResolver
+  - PathVariableMapMethodArgumentResolver
+  - MatrixVariableMethodArgumentResolver
+  - MatrixVariableMapMethodArgumentResolver
+  - ExpressionValueMethodArgumentResolver
+  - SessionAttributeMethodArgumentResolver
+  - RequestAttributeMethodArgumentResolver
+  - ServletRequestMethodArgumentResolver
+  - ServletResponseMethodArgumentResolver
+  - RequestParamMethodArgumentResolver
+
 - 
 
 ## Interceptor
@@ -127,3 +150,6 @@ public class WebConfig implements WebMvcConfigurer {
 2. 执行HandlerAdapter@handle之前执行HandlerInterceptor#preHandler
 3. ViewName解析后执行HandlerInterceptor#postHandler
 4. 页面渲染成功后执行HandlerInterceptor#triggerAfterCompletion
+
+## InitBinder
+
